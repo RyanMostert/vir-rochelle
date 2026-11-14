@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="af">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Rochelle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#F1D8E0; --page-lift:#FBEFF3; --ink:#3E1F2D; --paper:#FFFCF8;
+    --muted:#7A4A5B; --rose:#C9607F; --wax:#A93A5C;
+    --serif:"Fraunces","Iowan Old Style",Georgia,"Times New Roman",serif;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; height:100%; }
+  body{
+    display:grid; place-items:center;
+    padding:24px 16px;
+    background: radial-gradient(130% 90% at 50% -20%, var(--page-lift) 0%, transparent 62%), var(--page);
+    color:var(--ink); font-family:var(--serif); -webkit-font-smoothing:antialiased;
+  }
+  .card{
+    position:relative;
+    width:min(26rem, 100%);
+    padding:44px clamp(22px, 6vw, 40px) 36px;
+    background:var(--paper);
+    border-radius:2px;
+    text-align:center;
+    box-shadow: 0 1px 0 rgba(255,255,255,.95) inset, 0 22px 34px -20px rgba(97,45,64,.42), 0 2px 6px rgba(97,45,64,.14);
+    transform:rotate(-.4deg);
+    animation: settle .9s cubic-bezier(.2,.7,.25,1) both;
+  }
+  @keyframes settle{ from{ opacity:0; transform:rotate(-.4deg) translateY(18px); } }
+  .card::before,.card::after{
+    content:""; position:absolute; top:-11px; width:62px; height:21px;
+    background:rgba(231,200,158,.78); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22);
+  }
+  .card::before{ left:18px; transform:rotate(-4.5deg); }
+  .card::after { right:18px; transform:rotate(3.5deg); }
+
+  .seal{
+    width:58px; height:58px; margin:0 auto 18px;
+    display:grid; place-items:center;
+    border-radius:47% 53% 50% 50% / 52% 48% 52% 48%;
+    background: radial-gradient(circle at 35% 30%, #D0607F 0%, var(--wax) 55%, #7E2442 100%);
+    box-shadow: inset 0 2px 3px rgba(255,255,255,.35), inset 0 -3px 6px rgba(0,0,0,.25), 0 6px 12px -4px rgba(97,45,64,.55);
+    transform:rotate(-8deg);
+  }
+  .seal svg{ width:24px; height:24px; fill:rgba(255,225,233,.88); }
+  .shake{ animation: shake .45s ease; }
+  @keyframes shake{ 20%{transform:rotate(-8deg) translateX(-6px);} 40%{transform:rotate(-8deg) translateX(6px);} 60%{transform:rotate(-8deg) translateX(-4px);} 80%{transform:rotate(-8deg) translateX(3px);} }
+
+  h1{ margin:0; font-weight:300; font-style:italic; font-size:clamp(2.2rem, 9vw, 2.9rem); line-height:1; letter-spacing:-.02em; }
+  .sub{ margin:12px 0 26px; color:var(--muted); font-weight:300; line-height:1.6; }
+
+  form{ display:grid; gap:12px; }
+  input{
+    width:100%; padding:13px 14px;
+    font:inherit; font-size:1.1rem; text-align:center; letter-spacing:.04em;
+    color:var(--ink); background:#fff;
+    border:1px solid #E6CFD7; border-radius:3px; outline:none;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  input:focus{ border-color:var(--rose); box-shadow:0 0 0 3px rgba(201,96,127,.15); }
+  button{
+    padding:13px 14px; font:inherit; font-size:1.05rem; font-style:italic;
+    color:#FFF5F8; background:var(--wax); border:0; border-radius:3px; cursor:pointer;
+    transition:background .2s, transform .1s;
+  }
+  button:hover{ background:#952F50; }
+  button:active{ transform:scale(.98); }
+  button:disabled{ opacity:.7; cursor:progress; }
+  button:focus-visible{ outline:2px solid var(--muted); outline-offset:3px; }
+
+  .msg{ min-height:1.5em; margin:16px 0 0; color:var(--muted); font-size:.95rem; }
+  .hints{ list-style:none; margin:10px 0 0; padding:0; display:grid; gap:8px; }
+  .hints li{
+    padding:9px 12px; font-size:.95rem; font-style:italic; line-height:1.5;
+    color:var(--ink); background:#FBEFF3; border-radius:3px;
+    animation: fade .5s ease both;
+  }
+  @keyframes fade{ from{ opacity:0; transform:translateY(6px); } }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="seal" id="seal" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4h2c.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>
+    </div>
+    <h1>Vir Rochelle</h1>
+    <p class="sub">Hierdie een is net vir jou.<br>Watter datum maak dit oop?</p>
+    <form id="f" autocomplete="off">
+      <label for="pw" style="position:absolute;left:-9999px">Datum</label>
+      <input id="pw" inputmode="text" placeholder="dd / mm / jjjj" autofocus>
+      <button id="go" type="submit">Maak oop</button>
+    </form>
+    <p class="msg" id="msg" role="status" aria-live="polite"></p>
+    <ul class="hints" id="hints" aria-live="polite"></ul>
+  </main>
+<script>
+(() => {
+  const ITER = 600000;
+  const HINTS = [
+    "Die dag toe ek by die bar ingestap het.",
+    "Dag, maand en jaar — die jaar voor hierdie een.",
+    "Dieselfde dag en maand as vandag."
+  ];
+  const MONTHS = {
+    jan:1, januarie:1, january:1, feb:2, februarie:2, february:2,
+    mrt:3, maart:3, mar:3, march:3, apr:4, april:4, mei:5, may:5,
+    jun:6, junie:6, june:6, jul:7, julie:7, july:7, aug:8, augustus:8, august:8,
+    sep:9, sept:9, september:9, okt:10, oktober:10, oct:10, october:10,
+    nov:11, november:11, des:12, desember:12, dec:12, december:12
+  };
+
+  // any reasonable way of writing a date -> "DDMMYYYY", or null
+  function normalise(raw){
+    const toks = (raw.toLowerCase().match(/\d+|[a-z]+/g) || []);
+    let d, m, y;
+    const nums = [], words = [];
+    toks.forEach(t => /^\d+$/.test(t) ? nums.push(t) : (MONTHS[t] && words.push(MONTHS[t])));
+    if (words.length === 1 && nums.length === 2) {
+      m = words[0];
+      const yi = nums.findIndex(n => n.length === 4);
+      const yIdx = yi >= 0 ? yi : 1;
+      y = nums[yIdx]; d = nums[1 - yIdx];
+    } else if (words.length === 0 && nums.length === 1 && nums[0].length === 8) {
+      const s = nums[0];
+      if (/^(19|20)/.test(s)) { y = s.slice(0,4); m = s.slice(4,6); d = s.slice(6); }
+      else { d = s.slice(0,2); m = s.slice(2,4); y = s.slice(4); }
+    } else if (words.length === 0 && nums.length === 3) {
+      if (nums[0].length === 4) [y, m, d] = nums; else [d, m, y] = nums;
+      if (+m > 12 && +d <= 12) [d, m] = [m, d];
+    } else return null;
+    d = +d; m = +m; y = +y;
+    if (y < 100) y += 2000;
+    if (!(d >= 1 && d <= 31 && m >= 1 && m <= 12 && y >= 1900 && y <= 2100)) return null;
+    return String(d).padStart(2,"0") + String(m).padStart(2,"0") + String(y);
+  }
+
+  let blob = null;
+  const getBlob = () => blob || (blob = fetch("data.bin", { cache: "force-cache" }).then(r => {
+    if (!r.ok) throw new Error("data " + r.status);
+    return r.arrayBuffer();
+  }));
+  getBlob().catch(() => { blob = null; });
+
+  async function unlock(pass){
+    const buf = new Uint8Array(await getBlob());
+    const salt = buf.slice(0,16), iv = buf.slice(16,28), ct = buf.slice(28);
+    const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]);
+    const key = await crypto.subtle.deriveKey({ name:"PBKDF2", salt, iterations:ITER, hash:"SHA-256" },
+      base, { name:"AES-GCM", length:256 }, false, ["decrypt"]);
+    const plain = await crypto.subtle.decrypt({ name:"AES-GCM", iv }, key, ct); // throws on a wrong key
+    return new TextDecoder().decode(plain);
+  }
+
+  function show(html){
+    document.open(); document.write(html); document.close();
+  }
+
+  const f = document.getElementById("f"), pw = document.getElementById("pw"),
+        go = document.getElementById("go"), msg = document.getElementById("msg"),
+        hints = document.getElementById("hints"), seal = document.getElementById("seal");
+  let misses = 0;
+
+  function miss(text){
+    msg.textContent = text;
+    seal.classList.remove("shake"); void seal.offsetWidth; seal.classList.add("shake");
+    if (misses <= HINTS.length && hints.children.length < misses) {
+      const li = document.createElement("li");
+      li.textContent = "Wenk " + misses + ": " + HINTS[misses - 1];
+      hints.appendChild(li);
+    }
+    pw.select();
+  }
+
+  // stay unlocked for the rest of this browser session
+  try {
+    const kept = sessionStorage.getItem("vr-pass");
+    if (kept) unlock(kept).then(show).catch(() => { try { sessionStorage.removeItem("vr-pass"); } catch {} });
+  } catch {}
+
+  f.addEventListener("submit", async e => {
+    e.preventDefault();
+    const pass = normalise(pw.value);
+    if (!pass) { misses++; miss("Probeer dit as ’n datum, bv. dd/mm/jjjj."); return; }
+    go.disabled = true; msg.textContent = "Oomblik…";
+    try {
+      const html = await unlock(pass);
+      try { sessionStorage.setItem("vr-pass", pass); } catch {}
+      show(html);
+    } catch (err) {
+      go.disabled = false;
+      if (err && err.name === "OperationError") { misses++; miss("Nie heeltemal nie…"); }
+      else { blob = null; msg.textContent = "Kon nie laai nie. Kyk jou internet en probeer weer."; }
+    }
+  });
+})();
+</script>
+</body>
+</html>
